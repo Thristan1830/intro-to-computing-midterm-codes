@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-Minute Circular Timer</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background: white;
+      color: black;
+      font-family: Arial, sans-serif;
+    }
+
+    .timer {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    svg {
+      transform: rotate(-90deg);
+    }
+
+    circle {
+      fill: none;
+      stroke-width: 15;
+      stroke-linecap: round;
+    }
+
+    .bg {
+      stroke: #333;
+    }
+
+    .progress {
+      stroke: red;
+      stroke-dasharray: 565.48; /* circumference */
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .time {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #222;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #00ff99;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer">
+    <svg width="200" height="200">
+      <circle class="bg" cx="100" cy="100" r="90"></circle>
+      <circle class="progress" cx="100" cy="100" r="90"></circle>
+    </svg>
+    <div class="time" id="time">60</div>
+  </div>
+
+  <div class="controls">
+    <button id="play">▶ Play</button>
+    <button id="pause">⏸ Pause</button>
+    <button id="reset">⏹ Reset</button>
+  </div>
+
+  <script>
+    const circle = document.querySelector('.progress');
+    const timeEl = document.getElementById('time');
+    const playBtn = document.getElementById('play');
+    const pauseBtn = document.getElementById('pause');
+    const resetBtn = document.getElementById('reset');
+
+    const radius = 90;
+    const circumference = 2 * Math.PI * radius;
+    circle.style.strokeDasharray = circumference;
+
+    let seconds = 60;
+    let timer = null;
+
+    function updateTimer() {
+      timeEl.textContent = seconds;
+      const offset = circumference - (seconds / 60) * circumference;
+      circle.style.strokeDashoffset = offset;
+
+      if (seconds > 0) {
+        seconds--;
+      } else {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function startTimer() {
+      if (!timer) {
+        timer = setInterval(updateTimer, 1000);
+      }
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = null;
+      seconds = 60;
+      circle.style.strokeDashoffset = 0;
+      timeEl.textContent = seconds;
+    }
+
+    playBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    // initialize display
+    resetTimer();
+  </script>
+</body>
+</html>

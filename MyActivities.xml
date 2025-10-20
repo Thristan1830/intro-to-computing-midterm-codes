@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activities>
+    <student id="1">
+        <title>Activity 1</title>
+        <date>August 12, 2025</date>
+        <description>HTML Basic Structure</description>
+        <image>act 1.jpg</image>
+    </student>
+    <student id="2">
+        <title>Activity 2</title>
+        <date>September 5, 2025</date>
+        <description>CSS Properties</description>
+        <image>act 2.png</image>
+    </student>
+    <student id="3">
+        <title>Activity 3</title>
+        <date>October 1, 2025</date>
+        <description>Web Concepts and Internet Basics</description>
+        <image>act 3.jpg</image>
+    </student>
+    <student id="4">
+        <title>Activity 4</title>
+        <date>October 1, 2025</date>
+        <description>XML Structure</description>
+        <image>act 4.jpg</image>
+    </student>
+    <student id="5">
+        <title>Activity 5</title>
+        <date>October 1, 2025</date>
+        <description>Importance of Empowering Digital Minds for a Brighter Tomorrow</description>
+        <image>act 5.jpg</image>
+    </student>
+    <student id="6">
+        <title>Activity 6</title>
+        <date>October 1, 2025</date>
+        <description>Introduction to HTML and Basic Webpage Structure</description>
+        <image>s</image>
+    </student>
+    <student>
+    <student id="7">
+        <title>Activity 7</title>
+        <date></date>
+        <description></description>
+        <image>Flexbox and grid box.png</image>
+</activities>
